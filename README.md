@@ -4,7 +4,7 @@ A simple to-do list app where you can add tasks, remove them from the list, and 
 
 
 ## screenshots
-![](./design/desktop-preview.jpg)
+![](./design/Frame%201.png)
 
 ## Links
 
