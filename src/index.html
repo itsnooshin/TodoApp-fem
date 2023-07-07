@@ -1,11 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Todo list App</title>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo list App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/x-icon" href="../images/favicon-32x32.png" />
+    <link rel="stylesheet" href="scss/main.css" />
+  </head>
+  <body>
+    <main class="main">
+      <div class="main__background"></div>
+      <section class="section__info">
+        <!-- title for page flex -->
+           <div class="main__information-header">
+            <h1 class="main__information-title">TO DO</h1>
+            <img
+              src="./images/icon-sun.svg"
+              alt="image for dark or light"
+              class="main__information-header__logo"
+            />
+          </div>
+          <!-- create new to do list -->
+          <div class="main__form">
+            <span class="main__form--icon"></span>
+            <form action="#" class="main__form-box">
+              <input type="text" class="main__form__input" placeholder="Create a new todo…">
+            </form>
+          </div>
+          <div class="main__box-otherlist">
+            <!-- <form action="#">
+              <input type="checkbox" class="done-list">
+              <label for="checkbox"  class="header__checkbox-label">
+                <img src="./images/icon-check.svg" alt="">
+              </label>
+            </form> -->
+          </div>
+       
+      </section>
+    </main>
+    <script src="./main.js"></script>
+  </body>
 </html>
