@@ -112,6 +112,7 @@ li {
     border-radius: 50%;
     border: 1px solid #393a4b;
     display: inline-block;
+    cursor: pointer;
   }
   &__box-items {
     background-color: $color-dark-backgorund-box;
@@ -160,4 +161,9 @@ li {
     color: #5b5e7e;
     font-size: 1rem;
   }
+}
+.text-through {
+  text-decoration-line: line-through;
+  color: #4D5067;
+  font-weight: 600;
 }
