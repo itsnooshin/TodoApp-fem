@@ -1,0 +1,116 @@
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #171823;
+  font-family: "Josefin Sans", sans-serif;
+  line-height: 1.4;
+}
+
+.main__background {
+  background-image: url("../images/bg-desktop-dark.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 250px;
+  width: 100%;
+}
+.main__information-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 3rem;
+}
+.main__information-title {
+  color: #fff;
+  font-weight: 700;
+  font-size: 2rem;
+}
+.main__form__input {
+  border: none;
+  background-color: inherit;
+  margin: 0;
+  width: 100%;
+  padding: 1rem 0;
+  border-radius: 9px;
+  font-family: inherit;
+  font-size: 1.2rem;
+  color: #767992;
+}
+.main__form__input:focus {
+  outline: none;
+}
+.main__form--icon {
+  content: "";
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid #393a4b;
+  display: inline-block;
+}
+.main .main__form {
+  margin-top: 1rem;
+  background-color: #25273d;
+  align-items: center;
+  display: flex;
+  margin-bottom: 1rem;
+  gap: 20px;
+  width: 500px;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1.7rem;
+  padding-right: 1.7rem;
+  border-radius: 5px;
+}
+.main .main__form-box {
+  width: 100%;
+}
+.main__box-otherlist {
+  padding-top: 0rem;
+  padding-bottom: 0;
+  padding-left: 0rem;
+  padding-right: 0rem;
+  color: #c8cbe7;
+  font-weight: 400;
+  border-radius: 0;
+}
+.main__box-item {
+  display: flex;
+  align-items: center;
+  padding: 1.4rem 1.6rem;
+  gap: 20px;
+}
+.main__box--check {
+  content: "";
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid #393a4b;
+  display: inline-block;
+}
+.main__box-items {
+  background-color: #25273d;
+  border-radius: 7px;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 50vh;
+  width: 100%;
+}/*# sourceMappingURL=main.css.map */
