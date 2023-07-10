@@ -29,7 +29,7 @@ li {
 .main {
   &__background {
     background-image: url("../assests/imges/bg-desktop-dark.jpg");
-   
+
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -164,6 +164,6 @@ li {
 }
 .text-through {
   text-decoration-line: line-through;
-  color: #4D5067;
+  // color: red;
   font-weight: 600;
 }
