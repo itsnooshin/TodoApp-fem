@@ -1,21 +1,17 @@
 // colors
 $color-dark-backgorund: #171823;
 $color-dark-backgorund-box: #25273d;
-
-// #55DDFF #C058F3
-// $background-img-desktop: "./images/bg-desktop-dark.jpg";
 $font-family: "Josefin Sans", sans-serif;
 $color-primary-white: #fff;
 $font-weight-bold: 700;
 $font-weight-regular: 400;
 $background-color-lightmode: #fff;
 $text-color-light: #494c6b;
-
-:root {
-  --border-color-dark: #393a4b;
-  --border-color-light: #e3e4f1;
-  --text-color-light: #494c6b;
-}
+$text-color-input: #767992;
+$border-color-dark: #393a4b;
+$text-color-light: #494c6b;
+$border-color-light-icon: #979797;
+$border-color-light: #e3e4f1;
 
 *,
 *::after,
@@ -25,24 +21,27 @@ $text-color-light: #494c6b;
   box-sizing: border-box;
 }
 body {
-  background-color: #171823;
+  background-color: $color-dark-backgorund;
   font-family: "Josefin Sans", sans-serif;
   line-height: 1.4;
   position: relative;
 
   &.light-mode {
-    background-color: white;
+    background-color: $background-color-lightmode;
     .main__box--flex {
-      border-bottom-color: var(--border-color-light);
+      border-bottom-color: $border-color-light;
     }
     .main__box--check {
-      border: 1px solid #979797;
+      border: 1px solid #e3e4f1;
     }
-    .main__form--icon{
-    border: 1px solid #979797;
+    .main__form--icon {
+      border: 1px solid #afafbb;
     }
     .main__box-otherlist {
-      color: var(--text-color-light);
+      color: $text-color-light;
+    }
+    .text-through {
+      color: #d1d2da;
     }
   }
 }
@@ -83,7 +82,7 @@ li {
     border-radius: 9px;
     font-family: inherit;
     font-size: 1.1rem;
-    color: #767992;
+    color: $text-color-input;
   }
   &__form__input:focus {
     outline: none;
@@ -125,6 +124,9 @@ li {
     border: 1px solid #393a4b;
     display: inline-block;
     cursor: pointer;
+    position: relative;
+    background: none;
+    // background: linear-gradient(135deg, #5df 0%, #c058f3 100%);
   }
   &__box-items {
     background-color: $color-dark-backgorund-box;
@@ -174,6 +176,7 @@ li {
 .text-through {
   text-decoration-line: line-through;
   font-weight: 600;
+  color: #4d5067;
 }
 .main__box--flex {
   display: flex;
@@ -245,4 +248,23 @@ li {
 }
 .main__form--alternate {
   background-color: #e9e9e9;
+}
+.highlight {
+  background: linear-gradient(135deg, #5df 0%, #c058f3 100%);
+}
+.highlight::after {
+  position: absolute;
+  content: "";
+  // background-color: red;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  z-index: 222;
+  background-image: url("../assests/imges/Path.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  transform: translate(-50%, -50%);
 }

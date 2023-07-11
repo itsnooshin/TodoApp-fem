@@ -44,8 +44,9 @@ const mainDark = function (e) {
 
         const span = newItem.querySelector(".main__box--check");
         p.innerHTML = text;
-        span.addEventListener("click", function () {
+        span.addEventListener("click", function (e) {
           p.classList.toggle("text-through");
+          span.classList.toggle("highlight");
         });
 
         const btnClose = document.querySelectorAll(".btn--close");
@@ -66,8 +67,6 @@ const mainDark = function (e) {
 
 newList.addEventListener("keydown", mainDark);
 
-
-      
 const body = document.querySelector("body");
 const form = document.querySelector(".main__form");
 const formElement = document.getElementById("formElement");
@@ -75,15 +74,12 @@ const bcimg = document.querySelector(".main__background");
 const result = document.querySelector(".main__box-items");
 const mainBox = document.querySelector(".main__box--flex");
 
-
-
 const minLight = function () {
   document.body.classList.toggle("light-mode");
   result.classList.toggle("color-white-form");
   bcimg.classList.toggle("bcg-white");
 
   form.classList.toggle("main__form--alternate");
-  
 };
 
 btnLight.addEventListener("click", minLight);
