@@ -8,6 +8,15 @@ $font-family: "Josefin Sans", sans-serif;
 $color-primary-white: #fff;
 $font-weight-bold: 700;
 $font-weight-regular: 400;
+$background-color-lightmode: #fff;
+$text-color-light: #494c6b;
+
+:root {
+  --border-color-dark: #393a4b;
+  --border-color-light: #e3e4f1;
+  --text-color-light: #494c6b;
+}
+
 *,
 *::after,
 *::before {
@@ -20,6 +29,22 @@ body {
   font-family: "Josefin Sans", sans-serif;
   line-height: 1.4;
   position: relative;
+
+  &.light-mode {
+    background-color: white;
+    .main__box--flex {
+      border-bottom-color: var(--border-color-light);
+    }
+    .main__box--check {
+      border: 1px solid #979797;
+    }
+    .main__form--icon{
+    border: 1px solid #979797;
+    }
+    .main__box-otherlist {
+      color: var(--text-color-light);
+    }
+  }
 }
 ul,
 li {
@@ -29,7 +54,6 @@ li {
 .main {
   &__background {
     background-image: url("../assests/imges/bg-desktop-dark.jpg");
-
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -72,20 +96,7 @@ li {
     border: 1px solid #393a4b;
     display: inline-block;
   }
-  .main__form {
-    margin-top: 1rem;
-    background-color: #25273d;
-    align-items: center;
-    display: flex;
-    margin-bottom: 1rem;
-    gap: 20px;
-    width: 500px;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-left: 1.7rem;
-    padding-right: 1.7rem;
-    border-radius: 5px;
-  }
+
   .main__form-box {
     width: 100%;
   }
@@ -118,8 +129,6 @@ li {
   &__box-items {
     background-color: $color-dark-backgorund-box;
     border-radius: 7px;
-  }
-  &__box-item {
   }
 }
 
@@ -164,19 +173,22 @@ li {
 }
 .text-through {
   text-decoration-line: line-through;
-  // color: red;
   font-weight: 600;
 }
 .main__box--flex {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #393A4B;
+  border-bottom: 1px solid #393a4b;
   padding-right: 20px;
 }
+
 .main__box--flex:hover {
   position: relative;
   display: flex;
   align-items: center;
+}
+.light-mode {
+  background-color: $background-color-lightmode;
 }
 
 .main__box--flex:hover .btn--close::before,
@@ -195,4 +207,42 @@ li {
 }
 .main__box--flex:hover .btn--close::after {
   transform: rotate(-45deg);
+}
+
+.btn--lightdark {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  display: inline-block;
+}
+.white-color {
+  background-color: #f2f2f2;
+}
+.bcg-white {
+  background-image: url("../assests/imges/bg-desktop-light.jpg");
+}
+
+.color-white-form {
+  background-color: white;
+}
+.color-form-title {
+  background-color: #25273d;
+}
+
+.main__form {
+  margin-top: 1rem;
+  background-color: #25273d;
+  align-items: center;
+  display: flex;
+  margin-bottom: 1rem;
+  gap: 20px;
+  width: 500px;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1.7rem;
+  padding-right: 1.7rem;
+  border-radius: 5px;
+}
+.main__form--alternate {
+  background-color: #e9e9e9;
 }
