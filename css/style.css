@@ -140,7 +140,7 @@ li {
     color: #5b5e7e;
     font-size: 1rem; }
 
-.text-through {
+.completed {
   text-decoration-line: line-through;
   font-weight: 600;
   color: #4d5067; }
@@ -227,3 +227,6 @@ li {
   background-repeat: no-repeat;
   background-position: center;
   transform: translate(-50%, -50%); }
+
+.item {
+  cursor: pointer; }

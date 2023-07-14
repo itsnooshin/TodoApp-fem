@@ -1,16 +1,21 @@
-// create elements
 "use strict";
+// create elements
 const newList = document.querySelector(".main__form__input");
 const containerList = document.querySelectorAll(".main__box-otherlist");
-const checkList = document.getElementsByClassName("main__box--check");
 const checkListParagh = document.getElementsByClassName("box__lists");
 const buttonSpan = document.getElementById("mySpan");
 const itemLeft = document.querySelector(".item-calcuted");
 const btnClose = document.querySelectorAll(".btn--close");
 const btnLight = document.querySelector(".btn--lightdark");
-
+const body = document.querySelector("body");
+const form = document.querySelector(".main__form");
+const formElement = document.getElementById("formElement");
+const bcimg = document.querySelector(".main__background");
+const result = document.querySelector(".main__box-items");
+const filterList = document.querySelectorAll(".item");
 // when user add a to do display it on list order
 
+const completedTasks = [];
 const mainDark = function (e) {
   if (e.key === "Enter") {
     const input = e.target.value;
@@ -24,55 +29,50 @@ const mainDark = function (e) {
       <div class="btn--close"></div>
     </div>
       `;
-
       const text = e.target.value;
 
-      const newElement = document.createElement("div");
-      newElement.innerHTML = html;
-      containerList.forEach((element) => {
-        element.appendChild(newElement);
-        const newItem = element.lastChild;
+      for (let i = 0; i < containerList.length; i++) {
+        const newElement = document.createElement("div");
+        newElement.innerHTML = html;
+        containerList[i].appendChild(newElement);
+        const newItem = containerList[i].lastChild;
         const p = newItem.querySelector(".box__lists");
         p.classList.add("box__list");
-        const bodyElement = document.body;
-        const computedStyle = window.getComputedStyle(bodyElement);
-        const backgroundColor = computedStyle.backgroundColor;
-        console.log(backgroundColor);
-
         p.innerHTML = text;
-        itemLeft.textContent = element.children.length;
-
-        const span = newItem.querySelector(".main__box--check");
-        p.innerHTML = text;
-        span.addEventListener("click", function (e) {
-          p.classList.toggle("text-through");
-          span.classList.toggle("highlight");
+        itemLeft.textContent = containerList[i].children.length;
+        const checkList = newItem.querySelector(".main__box--check");
+        //  when user click on span
+        checkList.addEventListener("click", function () {
+          checkList.classList.toggle("highlight");
+          newElement.children[0].children[0].children[1].classList.toggle(
+            "completed"
+          );
+         console.log(newElement);
+          
+          
         });
 
-        const btnClose = document.querySelectorAll(".btn--close");
-        btnClose.forEach((el) => {
-          el.addEventListener("click", function (e) {
-            if (e.target) {
-              element.removeChild(newElement);
-              itemLeft.textContent = element.children.length;
-            }
-          });
-        });
-      });
+        e.target.value = ""; // for remove the item in new list
 
-      e.target.value = ""; // for remove the item in new list
+
+      }
     }
   }
+
+  
 };
 
-newList.addEventListener("keydown", mainDark);
+// const completeTask = function (taskname) {
+//   let completedTask = {
+//     name: taskname,
+//     completed: true,
+//   };
 
-const body = document.querySelector("body");
-const form = document.querySelector(".main__form");
-const formElement = document.getElementById("formElement");
-const bcimg = document.querySelector(".main__background");
-const result = document.querySelector(".main__box-items");
-const mainBox = document.querySelector(".main__box--flex");
+ 
+//   completedTasks.push(completeTask);
+//   console.log("Completed Tasks:" , completedTasks );
+// };
+
 
 const minLight = function () {
   document.body.classList.toggle("light-mode");
@@ -82,4 +82,6 @@ const minLight = function () {
   form.classList.toggle("main__form--alternate");
 };
 
+//addeventlistener
 btnLight.addEventListener("click", minLight);
+newList.addEventListener("keydown", mainDark);
