@@ -12,7 +12,7 @@ const form = document.querySelector(".main__form");
 const formElement = document.getElementById("formElement");
 const bcimg = document.querySelector(".main__background");
 const result = document.querySelector(".main__box-items");
-
+const btnlight = document.querySelector(".btn--lightdark");
 // when user add a to do display it on list order
 
 const addTodoInput = document.getElementById("add_todo_input"); //input for add a list
@@ -63,39 +63,53 @@ const complateTodo = function (id) {
 const activeButton = document.querySelector(".item-active");
 const allButton = document.querySelector(".item-all");
 const completedButton = document.querySelector(".item-done");
-
-const all = document.querySelectorAll(".item");
-all.forEach((el) => {
-  if (el.classList.contains("item-active")) {
-    el.addEventListener("click", function (e) {
-      const nonComplete = tododlists.filter((item) => !item.completed);
-      todosContainer.innerHTML = "";
-      nonComplete.forEach((el) => {
-        createTodoList(el);
-      });
-      calcutedItemLeft();
-    });
-  } else if (el.classList.contains("item-done")) {
-    el.addEventListener("click", function (e) {
-      const Complete = tododlists.filter((item) => item.completed);
-      todosContainer.innerHTML = "";
-      Complete.forEach((el) => {
-        createTodoList(el);
-        
-      });
-    });
-  }
-});
-
 const clearComplete = document.querySelector(".btn--clear");
-clearComplete.addEventListener("click", function () {
-  const Complete = tododlists.findIndex((item) =>  item.id);
-  if(Complete !== -1){
-    tododlists.splice(Complete , 1);
-    createEachlist()
-  }
- 
+const all = document.querySelectorAll(".item");
+
+// ative button
+
+allButton.addEventListener("click", function () {
+  const alltask = tododlists.map((item) => item);
+  todosContainer.innerHTML = "";
+  alltask.forEach((el) => {
+    createTodoList(el);
+  });
 });
+
+activeButton.addEventListener("click", function () {
+  const nonComplete = tododlists.filter((item) => !item.completed);
+  todosContainer.innerHTML = "";
+
+  nonComplete.forEach((el) => {
+    createTodoList(el);
+  });
+});
+
+// completed button
+
+completedButton.addEventListener("click", function () {
+  const Complete = tododlists.filter((item) => item.completed);
+  todosContainer.innerHTML = "";
+  Complete.forEach((el) => {
+    createTodoList(el);
+  });
+});
+
+clearComplete.addEventListener("click", function () {
+  const Complete = tododlists.filter((item) => item.completed);
+  const index = Complete.findIndex((item) => item.id);
+  todosContainer.innerHTML = "";
+  tododlists.splice(index, 1);
+});
+// if the user want to delete the task
+const deleteTodo = function (id) {
+  const index = tododlists.findIndex((item) => item.id === id);
+  console.log(index);
+  if (index !== -1) {
+    tododlists.splice(index, 1);
+    createEachlist();
+  }
+};
 
 // when the user type something on type input
 addTodoInput.addEventListener("keydown", function (event) {
@@ -112,4 +126,13 @@ addTodoInput.addEventListener("keydown", function (event) {
 
     event.target.value = ""; // empty the input when user type something
   }
+});
+
+// add light mode
+btnlight.addEventListener("click", function () {
+  body.classList.toggle("light-mode");
+  result.classList.toggle("color-white-form");
+  bcimg.classList.toggle("bcg-white");
+  form.classList.toggle("main__form--alternate");
+  // btnLight.classList.toggle("light-mode");
 });
