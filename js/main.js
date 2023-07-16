@@ -12,76 +12,104 @@ const form = document.querySelector(".main__form");
 const formElement = document.getElementById("formElement");
 const bcimg = document.querySelector(".main__background");
 const result = document.querySelector(".main__box-items");
-const filterList = document.querySelectorAll(".item");
+
 // when user add a to do display it on list order
 
-const completedTasks = [];
-const mainDark = function (e) {
-  if (e.key === "Enter") {
-    const input = e.target.value;
-    if (input.trim() !== "") {
-      const html = `
+const addTodoInput = document.getElementById("add_todo_input"); //input for add a list
+const todosContainer = document.getElementById("todos_box"); //container for todolist
+const itemsCountElement = document.getElementById("itemsCount"); // calcuted the lists completed or not
+const tododlists = [];
+const createTodoList = function (todo) {
+  todosContainer.insertAdjacentHTML(
+    "afterbegin",
+    `
       <div class="main__box--flex">
-      <div class="main__box-item">
-        <span class="main__box--check"></span>
-        <p class="box__lists"></p>
+        <div class="main__box-item" onClick="complateTodo(${todo.id})">
+          <span class="main__box--check ${
+            todo.completed ? "highlight" : ""
+          }"></span>
+          <p class="box__lists ${todo.completed ? "completed" : ""}">${
+      todo.title
+    }</p>
+        </div>
+        <div class="btn--close" onClick="deleteTodo(${todo.id})"></div>
       </div>
-      <div class="btn--close"></div>
-    </div>
-      `;
-      const text = e.target.value;
+    `
+  );
+};
 
-      for (let i = 0; i < containerList.length; i++) {
-        const newElement = document.createElement("div");
-        newElement.innerHTML = html;
-        containerList[i].appendChild(newElement);
-        const newItem = containerList[i].lastChild;
-        const p = newItem.querySelector(".box__lists");
-        p.classList.add("box__list");
-        p.innerHTML = text;
-        itemLeft.textContent = containerList[i].children.length;
-        const checkList = newItem.querySelector(".main__box--check");
-        //  when user click on span
-        checkList.addEventListener("click", function () {
-          checkList.classList.toggle("highlight");
-          newElement.children[0].children[0].children[1].classList.toggle(
-            "completed"
-          );
-         console.log(newElement);
-          
-          
-        });
+// calcuted when the list item is not clicked
+const calcutedItemLeft = function () {
+  itemLeft.innerHTML = tododlists.filter((list) => !list.completed).length;
+};
 
-        e.target.value = ""; // for remove the item in new list
+const createEachlist = function () {
+  todosContainer.innerHTML = "";
+  tododlists.forEach((item) => {
+    createTodoList(item);
+  });
+  calcutedItemLeft();
+};
+const complateTodo = function (id) {
+  const index = tododlists.findIndex((item) => item.id === id);
 
-
-      }
-    }
+  if (index !== -1) {
+    tododlists[index].completed = !tododlists[index].completed;
+    createEachlist();
   }
-
-  
 };
 
-// const completeTask = function (taskname) {
-//   let completedTask = {
-//     name: taskname,
-//     completed: true,
-//   };
+// item-active
+const activeButton = document.querySelector(".item-active");
+const allButton = document.querySelector(".item-all");
+const completedButton = document.querySelector(".item-done");
 
+const all = document.querySelectorAll(".item");
+all.forEach((el) => {
+  if (el.classList.contains("item-active")) {
+    el.addEventListener("click", function (e) {
+      const nonComplete = tododlists.filter((item) => !item.completed);
+      todosContainer.innerHTML = "";
+      nonComplete.forEach((el) => {
+        createTodoList(el);
+      });
+      calcutedItemLeft();
+    });
+  } else if (el.classList.contains("item-done")) {
+    el.addEventListener("click", function (e) {
+      const Complete = tododlists.filter((item) => item.completed);
+      todosContainer.innerHTML = "";
+      Complete.forEach((el) => {
+        createTodoList(el);
+        
+      });
+    });
+  }
+});
+
+const clearComplete = document.querySelector(".btn--clear");
+clearComplete.addEventListener("click", function () {
+  const Complete = tododlists.findIndex((item) =>  item.id);
+  if(Complete !== -1){
+    tododlists.splice(Complete , 1);
+    createEachlist()
+  }
  
-//   completedTasks.push(completeTask);
-//   console.log("Completed Tasks:" , completedTasks );
-// };
+});
 
+// when the user type something on type input
+addTodoInput.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    const item = {
+      id: new Date().getTime(),
+      title: event.target.value,
+      completed: false,
+    };
 
-const minLight = function () {
-  document.body.classList.toggle("light-mode");
-  result.classList.toggle("color-white-form");
-  bcimg.classList.toggle("bcg-white");
+    tododlists.push(item); // all item added to items
+    createTodoList(item); // for adjentHtml context
+    calcutedItemLeft(); // for calcute the item left
 
-  form.classList.toggle("main__form--alternate");
-};
-
-//addeventlistener
-btnLight.addEventListener("click", minLight);
-newList.addEventListener("keydown", mainDark);
+    event.target.value = ""; // empty the input when user type something
+  }
+});

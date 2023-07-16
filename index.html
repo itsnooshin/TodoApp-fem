@@ -32,7 +32,7 @@
           <span class="main__form--icon"></span>
           <form action="#" class="main__form-box">
             <input
-              type="text"
+              type="text" id="add_todo_input"
               class="main__form__input"
               placeholder="Create a new todo…"
             />
@@ -40,12 +40,11 @@
         </div>
         <section class="section__info">
           <div class="main__box-items">
-            <div class="main__box-otherlist">
-              
+            <div class="main__box-otherlist" id="todos_box">
             </div>
            
             <div class="main__box-otherlist-bottom">
-              <div class="item-left"><span class="item-calcuted">0</span> item left</div>
+              <div class="item-left"><span class="item-calcuted" id="itemsCount">0</span> item left</div>
               <ul class="list__item-btn">
                 <li class="item item-all">All</li>
                 <li class="item item-active">Active</li>
