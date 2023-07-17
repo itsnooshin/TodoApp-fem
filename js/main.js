@@ -1,18 +1,12 @@
 "use strict";
 // create elements
-const newList = document.querySelector(".main__form__input");
-const containerList = document.querySelectorAll(".main__box-otherlist");
-const checkListParagh = document.getElementsByClassName("box__lists");
-const buttonSpan = document.getElementById("mySpan");
 const itemLeft = document.querySelector(".item-calcuted");
-const btnClose = document.querySelectorAll(".btn--close");
 const btnLight = document.querySelector(".btn--lightdark");
 const body = document.querySelector("body");
 const form = document.querySelector(".main__form");
-const formElement = document.getElementById("formElement");
-const bcimg = document.querySelector(".main__background");
+const bgimage = document.querySelector(".main__background");
 const result = document.querySelector(".main__box-items");
-const btnlight = document.querySelector(".btn--lightdark");
+const imgIcon = document.getElementById("imgplus");
 // when user add a to do display it on list order
 
 const addTodoInput = document.getElementById("add_todo_input"); //input for add a list
@@ -129,10 +123,14 @@ addTodoInput.addEventListener("keydown", function (event) {
 });
 
 // add light mode
-btnlight.addEventListener("click", function () {
+btnLight.addEventListener("click", function () {
+  if (imgIcon.getAttribute("src") === "./assests/imges/sun-fill.svg") {
+    imgIcon.setAttribute("src", "./assests/imges/moon.svg");
+  } else {
+    imgIcon.setAttribute("src", "./assests/imges/sun-fill.svg");
+  }
   body.classList.toggle("light-mode");
   result.classList.toggle("color-white-form");
-  bcimg.classList.toggle("bcg-white");
+  bgimage.classList.toggle("bcg-white");
   form.classList.toggle("main__form--alternate");
-  // btnLight.classList.toggle("light-mode");
 });

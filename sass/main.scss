@@ -13,6 +13,11 @@ $text-color-light: #494c6b;
 $border-color-light-icon: #979797;
 $border-color-light: #e3e4f1;
 
+@mixin center-position {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 *,
 *::after,
 *::before {
@@ -22,7 +27,7 @@ $border-color-light: #e3e4f1;
 }
 body {
   background-color: $color-dark-backgorund;
-  font-family: "Josefin Sans", sans-serif;
+  font-family: $font-family;
   line-height: 1.4;
   position: relative;
 
@@ -42,6 +47,9 @@ body {
     }
     .text-through {
       color: #d1d2da;
+    }
+    .bcg-img {
+      background-image: url("../imges/bg-desktop-light.jpg");
     }
   }
 }
@@ -64,7 +72,6 @@ li {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     margin-top: 3rem;
   }
   &__information-title {
@@ -126,7 +133,6 @@ li {
     cursor: pointer;
     position: relative;
     background: none;
-    // background: linear-gradient(135deg, #5df 0%, #c058f3 100%);
   }
   &__box-items {
     background-color: $color-dark-backgorund-box;
@@ -140,16 +146,10 @@ li {
   max-width: 580px;
   margin: 0 auto;
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  height: 100%; // برای اینکه تکون نخوره
+  @include center-position();
+  height: 100%;
 }
-.footer {
-  text-align: center;
-  padding: 3rem 3rem;
-  color: #5b5e7e;
-}
+
 .main__box-otherlist-bottom {
   display: flex;
   justify-content: space-between;
@@ -190,9 +190,6 @@ li {
   display: flex;
   align-items: center;
 }
-.light-mode {
-  background-color: $background-color-lightmode;
-}
 
 .main__box--flex:hover .btn--close::before,
 .main__box--flex:hover .btn--close::after {
@@ -201,7 +198,6 @@ li {
   right: 1rem;
   width: 20px;
   height: 2px;
-  // padding-right: 20px;
   background-color: grey;
   cursor: pointer;
 }
@@ -218,19 +214,13 @@ li {
   cursor: pointer;
   display: inline-block;
 }
-.white-color {
-  background-color: #f2f2f2;
-}
-.bcg-white {
-  background-image: url("../assests/imges/bg-desktop-light.jpg");
-}
 
 .color-white-form {
-  background-color: white;
+  background-color: $background-color-lightmode;
 }
-.color-form-title {
-  background-color: #25273d;
-}
+// .color-form-title {
+//   background-color: #25273d;
+// }
 
 .main__form {
   margin-top: 1rem;
@@ -240,34 +230,42 @@ li {
   margin-bottom: 1rem;
   gap: 20px;
   width: 500px;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  padding-left: 1.7rem;
-  padding-right: 1.7rem;
+  padding: 0.5rem 1.7rem 0.5rem 1.7rem;
   border-radius: 5px;
 }
 .main__form--alternate {
   background-color: #e9e9e9;
 }
+
+// add javascript
 .highlight {
   background: linear-gradient(135deg, #5df 0%, #c058f3 100%);
+
+  &::after {
+    position: absolute;
+    content: "";
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    z-index: 222;
+    background-image: url("../assests/imges/Path.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    @include center-position;
+  }
 }
-.highlight::after {
-  position: absolute;
-  content: "";
-  // background-color: red;
-  display: inline-block;
-  width: 50px;
-  height: 50px;
-  top: 50%;
-  left: 50%;
-  text-align: center;
-  z-index: 222;
-  background-image: url("../assests/imges/Path.svg");
-  background-repeat: no-repeat;
-  background-position: center;
-  transform: translate(-50%, -50%);
-}
+
 .item {
   cursor: pointer;
+}
+
+.footer {
+  text-align: center;
+  padding: 3rem 3rem;
+  color: #5b5e7e;
+}
+
+.img {
+  background-image: url("../assests/imges/moon.svg");
 }
