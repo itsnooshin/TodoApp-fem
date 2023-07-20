@@ -62,8 +62,8 @@ const complateTodo = function (id) {
     console.log("no task");
   }
 };
-
-const btnActiveFn = function (e) {
+let previewbutton = null;
+btnActive.addEventListener("click", function (e) {
   const itemnonCompleted = tododlists.filter(
     (item) => item.completed === false
   );
@@ -73,11 +73,7 @@ const btnActiveFn = function (e) {
   itemnonCompleted.forEach((item) => {
     createTodoList(item);
   });
-};
-let previewbutton = null;
-btnActive.addEventListener("click", btnActiveFn);
-
-btnBottomActive.addEventListener("click", btnActiveFn);
+});
 
 const completedBtn = function () {
   const itemnonCompleted = tododlists.filter((item) => item.completed === true);
@@ -90,15 +86,15 @@ const completedBtn = function () {
 btnCompleted.addEventListener("click", completedBtn);
 btnBottomCompleted.addEventListener("click", completedBtn);
 
-const btnAllFn = function () {
+const btnAllFn = function () {};
+btnAll.addEventListener("click", function (e) {
   const allTask = tododlists.filter((item) => item);
   todosContainer.innerHTML = "";
   allTask.forEach((item) => {
     createTodoList(item);
   });
-};
-btnAll.addEventListener("click", btnAllFn);
-btnBottomAll.addEventListener("click", btnAllFn);
+});
+
 buttons.forEach((item) => {
   item.addEventListener("click", function (e) {
     if (previewbutton) {
@@ -121,10 +117,8 @@ btnClear.addEventListener("click", function () {
   const itemnonCompleted = tododlists.filter((item) => item.completed === true);
   const index = itemnonCompleted.findIndex((item) => item.id);
   todosContainer.innerHTML = "";
-  if (index !== -1) {
-    tododlists.splice(index, 1);
-    createEachList();
-  }
+  tododlists.splice(index, 1);
+  createEachList();
 });
 
 addTodoInput.addEventListener("keydown", function (event) {
@@ -135,8 +129,10 @@ addTodoInput.addEventListener("keydown", function (event) {
       completed: false,
     };
     tododlists.push(items);
+
     createTodoList(items);
     calcutedTheTaskList();
+
     event.target.value = "";
   }
 });
