@@ -12,9 +12,12 @@ const btnAll = document.querySelector(".item-all");
 const btnCompleted = document.querySelector(".item-done");
 const btnClear = document.querySelector(".btn--clear");
 const buttons = document.querySelectorAll(".item");
-const addTodoInput = document.getElementById("add_todo_input"); //input for add a list
-const todosContainer = document.getElementById("todos_box"); //container for todolist
-const itemsCountElement = document.getElementById("itemsCount"); // calcuted the lists completed or not
+const addTodoInput = document.getElementById("add_todo_input");
+const todosContainer = document.getElementById("todos_box");
+const itemsCountElement = document.getElementById("itemsCount");
+const btnBottomAll = document.querySelector(".item-all-footer");
+const btnBottomActive = document.querySelector(".item-active-footer");
+const btnBottomCompleted = document.querySelector(".item-done-footer");
 const tododlists = [];
 
 const createTodoList = function (todo) {
@@ -59,8 +62,8 @@ const complateTodo = function (id) {
     console.log("no task");
   }
 };
-let previewbutton = null;
-btnActive.addEventListener("click", function (e) {
+
+const btnActiveFn = function (e) {
   const itemnonCompleted = tododlists.filter(
     (item) => item.completed === false
   );
@@ -70,24 +73,32 @@ btnActive.addEventListener("click", function (e) {
   itemnonCompleted.forEach((item) => {
     createTodoList(item);
   });
-});
+};
+let previewbutton = null;
+btnActive.addEventListener("click", btnActiveFn);
 
-btnCompleted.addEventListener("click", function (e) {
+btnBottomActive.addEventListener("click", btnActiveFn);
+
+const completedBtn = function () {
   const itemnonCompleted = tododlists.filter((item) => item.completed === true);
   todosContainer.innerHTML = "";
   itemnonCompleted.forEach((item) => {
     createTodoList(item);
   });
-});
+};
 
-btnAll.addEventListener("click", function (e) {
+btnCompleted.addEventListener("click", completedBtn);
+btnBottomCompleted.addEventListener("click", completedBtn);
+
+const btnAllFn = function () {
   const allTask = tododlists.filter((item) => item);
   todosContainer.innerHTML = "";
   allTask.forEach((item) => {
     createTodoList(item);
   });
-});
-
+};
+btnAll.addEventListener("click", btnAllFn);
+btnBottomAll.addEventListener("click", btnAllFn);
 buttons.forEach((item) => {
   item.addEventListener("click", function (e) {
     if (previewbutton) {
@@ -124,10 +135,8 @@ addTodoInput.addEventListener("keydown", function (event) {
       completed: false,
     };
     tododlists.push(items);
-
     createTodoList(items);
     calcutedTheTaskList();
-
     event.target.value = "";
   }
 });
